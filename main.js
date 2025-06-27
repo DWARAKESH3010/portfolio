@@ -118,4 +118,21 @@ ScrollReveal().reveal('.home-img,.services-container,.portfolio-box,.contact for
   });
 
   
+const toggleCheckbox = document.getElementById("toggle-theme");
+const root = document.documentElement; // html element
 
+// Apply saved theme on load
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    root.classList.add("light-mode");
+    toggleCheckbox.checked = true;
+  }
+});
+
+// Toggle theme on checkbox change
+toggleCheckbox.addEventListener("change", () => {
+  const isLight = toggleCheckbox.checked;
+  root.classList.toggle("light-mode", isLight);
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+});

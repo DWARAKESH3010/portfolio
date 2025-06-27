@@ -11,23 +11,101 @@
     font-family: "Nunito", sans-serif;
 }
 
-:root{
-    --bg-color:#101011;
-    --snd-bg-color:#1a1a1a;
-    --text-color:#f8fafc;
-    --main-color:#dd2121;
+:root {
+  /* Dark mode defaults */
+  --bg-color: #101011;
+  --snd-bg-color: #1a1a1a;
+  --text-color: #f8fafc;
+  --main-color: #dd2121;
+  --nav-text-color: #ffffff;
+}
+
+html.light-mode {
+  /* Light mode overrides */
+  --bg-color: #ffffff;
+  --snd-bg-color: #f1f1f1;
+  --text-color: #000000;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Theme Switch Toggle Button */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 65px;
+  height: 34px;
+  margin: 10px;
+  border-radius: 50px;
+  background: var(--snd-bg-color);
+  box-shadow: 0 0 10px rgba(221, 33, 33, 0.6);
+  transition: background 0.4s ease;
+}
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-switch .slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  transition: transform 0.4s ease, background-color 0.4s ease;
+  box-shadow: 0 0 6px var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+}
+
+.theme-switch .icon {
+  position: absolute;
+  font-size: 14px;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.theme-switch .moon {
+  opacity: 1;
+}
+
+.theme-switch .sun {
+  opacity: 0;
+}
+
+/* Light mode (checkbox checked) */
+.theme-switch input:checked + .slider {
+  transform: translateX(31px);
+  background-color: #ffffff;
+  box-shadow: 0 0 8px #ffffff;
+  color: #000;
+}
+
+.theme-switch input:checked + .slider .moon {
+  opacity: 0;
+}
+
+.theme-switch input:checked + .slider .sun {
+  opacity: 1;
 }
 
 
-html{
-    font-size:62.5%;
-    overflow-x:hidden;
-}
 
-body{
-    background: var(--bg-color);
-    color: var(--text-color);
-}
 
 section {
     min-height: 100vh;
@@ -66,7 +144,7 @@ nav{
 
 .navbar a {
     font-size: 1.5rem;
-    color: var(--text-color);
+    color: var(--nav-text-color); 
     margin-left: 2rem;
     font-weight: 700;
     z-index: 1;
@@ -209,6 +287,61 @@ span{
     box-shadow: none;
 
 }
+
+
+
+
+.skills {
+  background:var(--bg-color);
+  text-align: center;
+  color:var(--text-color);
+  padding: 80px 5% 40px 5%; 
+  min-height: auto !important;
+}
+
+.skills .heading {
+  margin-bottom: 2rem;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.skill-item {
+  background: var(--bg-color);
+  border-radius: 15px;
+  padding: 10px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.skill-item:hover {
+  transform: translateY(-10px) scale(1.1);
+  box-shadow: 0 15px 25px var(--main-color);
+}
+
+.skill-item i, .skill-item img {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color:var(--main-color)
+}
+
+.skill-item img {
+  width: 40px;
+  height: 40px;
+}
+
+
 .about{
     display: flex;
     justify-content: center;
@@ -650,52 +783,3 @@ span{
     }
 }
 
-
-.skills {
-  background:var(--bg-color);
-  text-align: center;
-  color: #fff;
-  padding: 80px 5% 40px 5%; 
-  min-height: auto !important;
-}
-
-.skills .heading {
-  margin-bottom: 2rem;
-}
-
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-}
-
-.skill-item {
-  background: var(--bg-color);
-  border-radius: 15px;
-  padding: 10px;
-  width: 80px;
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-}
-
-.skill-item:hover {
-  transform: translateY(-10px) scale(1.1);
-  box-shadow: 0 15px 25px var(--main-color);
-}
-
-.skill-item i, .skill-item img {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color:var(--main-color)
-}
-
-.skill-item img {
-  width: 40px;
-  height: 40px;
-}
